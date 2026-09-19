@@ -21,14 +21,30 @@ def root():
     </head>
     <body>
         <div class="card">
-            <h1>Привет!</h1>
-            <p>Visca Barca</p>
-            <img src="/static/raf.jpg" alt="raf">
+            <h1>Visca Barca!</h1>
+            <p>Нажми, чтобы посмотреть</p>
+            <button class="btn" onclick="showVideo()">Показать видео</button>
+
+            <div id="video-block" class="video-hidden">
+                <video id="edit-video" controls width="100%">
+                    <source src="/static/edit.mp4" type="video/mp4">
+                    Твой браузер не поддерживает видео.
+                </video>
+            </div>
         </div>
+
+        <script>
+            function showVideo() {
+                const block = document.getElementById('video-block');
+                block.classList.toggle('video-hidden');
+                if (!block.classList.contains('video-hidden')) {
+                    document.getElementById('edit-video').play();
+                }
+            }
+        </script>
     </body>
     </html>
-    """
-
+"""
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000)
