@@ -22,7 +22,7 @@ def root():
     <body>
         <div class="card">
             <h1>Привет!</h1>
-            <p>Добро пожаловать в IdeaCRAFT</p>
+            <p>Visca Barca</p>
             <img src="/static/raf.jpg" alt="raf">
         </div>
     </body>
