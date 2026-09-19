@@ -3,41 +3,24 @@ name: CI/CD
 on:
   push:
     branches: [ main ]
-  pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Compile the code
-        uses: actions/checkout@v4
-
-      - name: Build Docker image
+      - uses: actions/checkout@v4
+      - name: Build image
         run: docker build -t my-backend-image .
-          
 
   test:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Running unit tests
-        uses: actions/checkout@v4
-
-      - name:  Build image for tests
+      - uses: actions/checkout@v4
+      - name: Build image
         run: docker build -t my-backend-image .
-
       - name: Run tests
         run: docker run --rm my-backend-image pytest -s -v
-
-  # lint-test:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Linting code
-  #       run: |
-  #         echo "Linting code... This will take about 10 seconds."
-  #         sleep 10
-  #         echo "No lint issues found."
 
   deploy:
     needs: test
@@ -51,6 +34,6 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /root/твоя_папка_с_проектом
+            cd /root/my-app
             git pull
             docker compose up -d --build
