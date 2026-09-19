@@ -12,12 +12,20 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 @app.get("/", response_class=HTMLResponse)
 def root():
     return """
-    <html>
-        <head><title>Моя страница</title></head>
-        <body>
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>IdeaCRAFT</title>
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+        <div class="card">
             <h1>Привет!</h1>
-            <img src="/static/raf.jpg" alt="cat" width="400">
-        </body>
+            <p>Добро пожаловать в IdeaCRAFT</p>
+            <img src="/static/raf.jpg" alt="raf">
+        </div>
+    </body>
     </html>
     """
 
