@@ -10,7 +10,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/")
 def root():
-    return {"msg": "Visca Barca!"}
+    return {"msg": "Hello World!!"}
 
 
 if __name__ == "__main__":
