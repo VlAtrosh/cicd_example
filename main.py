@@ -21,8 +21,8 @@ def root():
     </head>
     <body>
         <div class="card">
-            <h1>Visca Barca!</h1>
-            <p>Нажми, чтобы посмотреть</p>
+            <h1>Привет!</h1>
+            <p>Visca Barca</p>
             <button class="btn" onclick="showVideo()">Показать видео</button>
 
             <div id="video-block" class="video-hidden">
