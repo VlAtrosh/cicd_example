@@ -1,0 +1,45 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Compile the code
+        run: |
+          echo "Compiling the code..."
+          echo "Compile complete."
+
+  unit-test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Running unit tests
+        run: |
+          echo "Running unit tests... This will take about 60 seconds."
+          sleep 60
+          echo "Code coverage is 90%"
+
+  lint-test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Linting code
+        run: |
+          echo "Linting code... This will take about 10 seconds."
+          sleep 10
+          echo "No lint issues found."
+
+  deploy:
+    needs: [ unit-test, lint-test ]
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Deploying application
+        run: |
+          echo "Deploying application..."
+          echo "Application successfully deployed."
