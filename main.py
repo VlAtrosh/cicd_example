@@ -8,7 +8,6 @@ app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-
 @app.get("/", response_class=HTMLResponse)
 def root():
     return """
@@ -21,6 +20,7 @@ def root():
     </head>
     <body>
         <div class="card">
+            <img src="/static/raf.jpg" alt="raf" class="hero-img">
             <h1>Привет!</h1>
             <p>Visca Barca</p>
             <button class="btn" onclick="showVideo()">Показать видео</button>
@@ -44,7 +44,7 @@ def root():
         </script>
     </body>
     </html>
-"""
+    """
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000)
