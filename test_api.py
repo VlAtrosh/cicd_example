@@ -1,5 +1,4 @@
 from fastapi.testclient import TestClient
-
 from main import app
 
 
@@ -9,4 +8,6 @@ client = TestClient(app)
 def test_read_main():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {"msg": "Hello World!"}
+    assert "text/html" in response.headers["content-type"]
+    assert "Привет!" in response.text
+    assert "/static/raf.jpg" in response.text
